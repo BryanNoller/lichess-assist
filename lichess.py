@@ -8,7 +8,7 @@ LICHESS_URL = 'https://en.lichess.org'
 DEBUGGER_IP, DEBUGGER_PORT = '127.0.0.1', 9222
 MOVETIME = 1000 # milliseconds for engine to calculate
 MOVETIME_FIRST = 20 # first calculation in milliseconds
-ENGINE = ['stockfish'] # ['gnuchess', '--uci']
+ENGINE = ['stockfish'] # ['stockfish_8_x64'] ['gnuchess', '--uci']
 ENGINE_OPTIONS = {
     'Threads': 2,
     'Ponder': True,
