@@ -76,7 +76,7 @@ class Lichess():
         self.go = None
         self.best_moves = set()
         self.html = ''
-        if uci != self.my_last_move:
+        if uci != self.my_last_move and self.my_last_move:
             self.go = self.engine.go(movetime=MOVETIME_FIRST, async_callback=True)
         else:
             self.crdbg.command('DOM.getDocument')
