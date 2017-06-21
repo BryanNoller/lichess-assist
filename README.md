@@ -1,7 +1,7 @@
-lichess cheat
+lichess assistant
 =============
 
-Platform-independent cheat for [lichess.org](https://lichess.org) in [python](https://www.python.org) using [chrome remote debugging protocol](https://developer.chrome.com/devtools/docs/debugger-protocol).
+Platform-independent assistant for [lichess.org](https://lichess.org) in [python](https://www.python.org) using [chrome remote debugging protocol](https://developer.chrome.com/devtools/docs/debugger-protocol).
 
 # Requirements
 * [Google Chrome](https://www.google.com/chrome)
@@ -15,7 +15,7 @@ Usage
 
 **Windows**
 ```
-"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 "https://en.lichess.org/"
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 "https://lichess.org/"
 ```
 
 ```
@@ -24,7 +24,7 @@ C:\Python27\python.exe lichess.py
 
 **Mac OS X**
 ```
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --remote-debugging-port=9222 "https://en.lichess.org/" &
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --remote-debugging-port=9222 "https://lichess.org/" &
 ```
 
 ```

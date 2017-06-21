@@ -4,15 +4,17 @@ from ws4py.client.threadedclient import WebSocketClient
 
 # chrome.exe --remote-debugging-port=9222
 
-LICHESS_URL = 'https://en.lichess.org'
+LICHESS_URL = 'https://lichess.org'
 DEBUGGER_IP, DEBUGGER_PORT = '127.0.0.1', 9222
 MOVETIME = 1000 # milliseconds for engine to calculate
 MOVETIME_FIRST = 20 # first calculation in milliseconds
-ENGINE = ['stockfish'] # ['stockfish_8_x64'] ['gnuchess', '--uci']
+ENGINE = ['stockfish'] # ['stockfish_8_x64'] ['houdini'] ['gnuchess', '--uci']
 ENGINE_OPTIONS = {
-    'Threads': 2,
+#    'Threads': 2,
     'Ponder': True,
-    'Hash': 2048, # MB
+#    'Hash': 512, # MB
+#    'Contempt': 100,
+#    'UCI_Chess960': True,
 }
 
 class Lichess():
@@ -41,13 +43,11 @@ class Lichess():
                 self.best_moves.add(move)
                 score = self.info_handler.info['score'][1] if 1 in self.info_handler.info['score'] else chess.uci.Score(cp=None, mate=None)
                 html = ''
-                if score.mate != None:
-                    html += 'Mate in %d moves' % score.mate
-                elif score.cp != None:
-                    html += 'Centipawn %d' % score.cp
-                html += chess.svg.board(self.board, flipped=bool(self.white == False), coordinates=False, lastmove=best, size=200)
-                self.html += html
-                self.crdbg.command('DOM.getDocument')
+                if (score.mate or score.cp):
+                    html += 'Mate in %d moves' if score.mate else 'Centipawn %d' % score.cp
+                    html += chess.svg.board(self.board, flipped=bool(self.white == False), coordinates=False, lastmove=best, size=200)
+                    self.html += html
+                    self.crdbg.command('DOM.getDocument')
             self.go = self.engine.go(movetime=MOVETIME, async_callback=True)
 
     def sent(self, uci):
