@@ -6,8 +6,8 @@ Platform-independent assistant for [lichess.org](https://lichess.org) in [python
 # Requirements
 * [Google Chrome](https://www.google.com/chrome)
 * [Python 2.7](https://www.python.org)
- * [python-chess](https://pypi.python.org/pypi/python-chess)
- * [ws4py](https://pypi.python.org/pypi/ws4py)
+  * [python-chess](https://pypi.python.org/pypi/python-chess)
+  * [ws4py](https://pypi.python.org/pypi/ws4py)
 * [Stockfish](https://stockfishchess.org) (or any UCI-compliant chess engine)
 
 Usage
