@@ -6,7 +6,7 @@ from ws4py.client.threadedclient import WebSocketClient
 
 LICHESS_URL = 'https://lichess.org'
 DEBUGGER_IP, DEBUGGER_PORT = '127.0.0.1', 9222
-MOVETIME = 1000 # milliseconds for engine to calculate
+MOVETIME = 200 # milliseconds for engine to calculate
 MOVETIME_FIRST = 20 # first calculation in milliseconds
 ENGINE = ['stockfish'] # ['stockfish_8_x64'] ['houdini'] ['gnuchess', '--uci']
 ENGINE_OPTIONS = {
@@ -27,6 +27,8 @@ class Lichess():
 
         self.engine = chess.uci.popen_engine(ENGINE)
         self.engine.uci()
+        print self.engine.name
+        print self.engine.author
         self.engine.setoption(ENGINE_OPTIONS)
         self.info_handler = chess.uci.InfoHandler()
         self.engine.info_handlers.append(self.info_handler)
@@ -44,7 +46,7 @@ class Lichess():
                 score = self.info_handler.info['score'][1] if 1 in self.info_handler.info['score'] else chess.uci.Score(cp=None, mate=None)
                 html = ''
                 if (score.mate or score.cp):
-                    html += 'Mate in %d moves' if score.mate else 'Centipawn %d' % score.cp
+                    html += 'Mate in %d moves' % score.mate if score.mate else 'Centipawn %d' % score.cp
                     html += chess.svg.board(self.board, flipped=bool(self.white == False), coordinates=False, lastmove=best, size=200)
                     self.html += html
                     self.crdbg.command('DOM.getDocument')
